@@ -5,7 +5,7 @@ import Quickshell.Hyprland
 import QtQuick.Layouts
 
 PanelWindow {
-	property var carbonBlack: "#212529"
+	property var onyx: "#0F0F0F"
 	property var gunMetal: "#343A40"
 	property var ironGrey: "#495057"
 	property var slateGrey: "#6C757D"
@@ -73,7 +73,7 @@ PanelWindow {
 	}
 	implicitHeight: 20
 
-	color: carbonBlack
+	color: onyx
 
 	RowLayout {
 		anchors.fill: parent
@@ -81,12 +81,12 @@ PanelWindow {
 
 		// Workspaces
 		Repeater {
-			model: 9
+			model: 10
 			Text {
 				property var workspace: Hyprland.workspaces.values.find(w => w.id === index + 1)
 				property bool isActive: Hyprland.focusedWorkspace?.id === (index + 1)
 				text: index + 1
-				color: isActive ? brightSnow : (workspace ? slateGrey : ironGrey)
+				color: isActive ? brightSnow : (workspace ? slateGrey : gunMetal)
 				font { pixelSize: 14 }
 			}
 		}
