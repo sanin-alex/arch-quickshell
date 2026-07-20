@@ -8,10 +8,12 @@ PanelWindow {
 	anchors.top: true
 	anchors.left: true
 	anchors.right: true
-	implicitHeight: 30
+	implicitHeight: 20
 
 	property int battery: -1
-	// Time
+	property var systemTime
+
+	// Time Process
 	Process {
 		id: getTime
 		command: ["date"]
@@ -19,8 +21,7 @@ PanelWindow {
 		stdout: SplitParser {
 			onRead: data => {
 				var splitData = data.trim().split(/\s+/)
-				time.text = data
-				time.text = splitData[3]
+				systemTime = splitData[3]
 			}
 		}
 	}
@@ -31,7 +32,7 @@ PanelWindow {
 		onTriggered: getTime.running = true
 	}
 
-	// Battery
+	// Battery Process
 	Process {
 		id: getBattery
 		command: ["cat", "/sys/class/power_supply/BAT0/capacity"]
@@ -49,7 +50,7 @@ PanelWindow {
 
 	RowLayout {
 		anchors.fill: parent
-		anchors.margins: 8
+		anchors.margins: 2 
 
 		// Workspaces
 		Repeater {
@@ -62,18 +63,20 @@ PanelWindow {
 				font { pixelSize: 14 }
 			}
 		}
-
+		
 		Item { Layout.fillWidth: true }
 
-		// Battery
+		// Battery Text
 		Text {
 			text: battery + "%"
 		}
 	}
 
-	// Time
+	// Time Text
 	Text {
 		id: time
 		anchors.centerIn: parent
+		text: systemTime
 	}
+	
 }
