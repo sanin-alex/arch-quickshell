@@ -11,7 +11,10 @@ PanelWindow {
 	property var slateGrey: "#6C757D"
 	property var brightSnow: "#F8F9FA"
 
+	property var paleGreen: "#98fb98"
+
 	property int battery: -1
+	property bool charging: false
 	property var systemTime
 
 	// Time Process
@@ -33,20 +36,34 @@ PanelWindow {
 		onTriggered: getTime.running = true
 	}
 
-	// Battery Process
+	// Battery 
+
+	// Capacity
 	Process {
-		id: getBattery
+		id: getBatteryCapacity
 		command: ["cat", "/sys/class/power_supply/BAT0/capacity"]
 		running: true
 		stdout: StdioCollector {
 			onStreamFinished: battery = parseInt(this.text)
 		}
 	}
+	// Status
+	Process {
+		id: getBatteryStatus
+		command: ["cat", "/sys/class/power_supply/BAT0/status"]
+		running: true
+		stdout: StdioCollector {
+			onStreamFinished: charging = (this.text.trim() === "Charging")
+		}
+	}
 	Timer {
 		interval: 2000
 		running: true
 		repeat: true
-		onTriggered: getBattery.running = true
+		onTriggered: {
+			getBatteryCapacity.running = true
+			getBatteryStatus.running = true
+		}
 	}
 
 	anchors {
@@ -79,7 +96,7 @@ PanelWindow {
 		// Battery Text
 		Text {
 			text: battery + "%"
-			color: brightSnow
+			color: charging ? paleGreen : brightSnow
 		}
 	}
 
