@@ -7,8 +7,8 @@ Shows:
 - Battery capacity and status
 
 ### Install & Run
-Before installing and running make sure to install the quickshell package.
-For Arch: `pacman -S quickshell`
-`git clone https://github.com/sanin-alex/arch-quickshell`
-`cd arch-quickshell`
+Before installing and running make sure to install the quickshell package.<br />
+For Arch: `pacman -S quickshell`<br />
+`git clone https://github.com/sanin-alex/arch-quickshell`<br />
+`cd arch-quickshell`<br />
 `qs shell.qml`
