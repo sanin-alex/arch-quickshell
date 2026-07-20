@@ -5,7 +5,6 @@ import Quickshell.Hyprland
 import QtQuick.Layouts
 
 PanelWindow {
-
 	property var carbonBlack: "#212529"
 	property var gunMetal: "#343A40"
 	property var ironGrey: "#495057"
@@ -18,12 +17,12 @@ PanelWindow {
 	// Time Process
 	Process {
 		id: getTime
-		command: ["date"]
+		command: [`date`, `+%H:%M:%S-%d/%m/%y`]
 		running: true
 		stdout: SplitParser {
 			onRead: data => {
-				var splitData = data.trim().split(/\s+/)
-				systemTime = splitData[3]
+				var splitData = data.trim().split("-")	
+				systemTime = splitData[0] + " | " + splitData[1]
 			}
 		}
 	}
@@ -84,11 +83,11 @@ PanelWindow {
 		}
 	}
 
-	// Time Text
+	// Time & Date Text
 	Text {
 		id: time
 		anchors.centerIn: parent
-		text: systemTime
+		text: systemTime 
 		color: brightSnow
 	}
 	
