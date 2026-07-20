@@ -1,7 +1,7 @@
 # Simple Quickshell Bar
 A simple Taskbar for hyprland, made with quickshell.
-
-Shows: qs shell.qml
+<img width="1920" height="40" alt="image" src="https://github.com/user-attachments/assets/2b220f3b-e4a9-4422-87b5-ff12af130543" />
+Shows:
 - Hyprland workspaces
 - Date & Time
 - Battery capacity and status
