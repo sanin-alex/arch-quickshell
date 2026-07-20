@@ -10,6 +10,7 @@ PanelWindow {
 	anchors.right: true
 	implicitHeight: 30
 
+	property int battery: -1
 	// Time
 	Process {
 		id: getTime
@@ -30,23 +31,47 @@ PanelWindow {
 		onTriggered: getTime.running = true
 	}
 
+	// Battery
+	Process {
+		id: getBattery
+		command: ["cat", "/sys/class/power_supply/BAT0/capacity"]
+		running: true
+		stdout: StdioCollector {
+			onStreamFinished: battery = parseInt(this.text)
+		}
+	}
+	Timer {
+		interval: 2000
+		running: true
+		repeat: true
+		onTriggered: getBattery.running = true
+	}
+
 	RowLayout {
 		anchors.fill: parent
 		anchors.margins: 8
 
+		// Workspaces
 		Repeater {
 			model: 9
-
 			Text {
-				property var ws: Hyprland.workspaces.values.find(w => w.id === index + 1)
+				property var workspace: Hyprland.workspaces.values.find(w => w.id === index + 1)
 				property bool isActive: Hyprland.focusedWorkspace?.id === (index + 1)
 				text: index + 1
-				color: isActive? "#000000" : (ws ? "#A0A0A0" : "#FFFFFF")
+				color: isActive? "#000000" : (workspace ? "#A0A0A0" : "#FFFFFF")
 				font { pixelSize: 14 }
 			}
 		}
+
 		Item { Layout.fillWidth: true }
+
+		// Battery
+		Text {
+			text: battery + "%"
+		}
 	}
+
+	// Time
 	Text {
 		id: time
 		anchors.centerIn: parent
