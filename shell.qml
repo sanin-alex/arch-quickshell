@@ -5,10 +5,12 @@ import Quickshell.Hyprland
 import QtQuick.Layouts
 
 PanelWindow {
-	anchors.top: true
-	anchors.left: true
-	anchors.right: true
-	implicitHeight: 20
+
+	property var carbonBlack: "#212529"
+	property var gunMetal: "#343A40"
+	property var ironGrey: "#495057"
+	property var slateGrey: "#6C757D"
+	property var brightSnow: "#F8F9FA"
 
 	property int battery: -1
 	property var systemTime
@@ -48,6 +50,15 @@ PanelWindow {
 		onTriggered: getBattery.running = true
 	}
 
+	anchors {
+		top: true
+		left: true
+		right: true
+	}
+	implicitHeight: 20
+
+	color: carbonBlack
+
 	RowLayout {
 		anchors.fill: parent
 		anchors.margins: 2 
@@ -59,7 +70,7 @@ PanelWindow {
 				property var workspace: Hyprland.workspaces.values.find(w => w.id === index + 1)
 				property bool isActive: Hyprland.focusedWorkspace?.id === (index + 1)
 				text: index + 1
-				color: isActive? "#000000" : (workspace ? "#A0A0A0" : "#FFFFFF")
+				color: isActive ? brightSnow : (workspace ? slateGrey : ironGrey)
 				font { pixelSize: 14 }
 			}
 		}
@@ -69,6 +80,7 @@ PanelWindow {
 		// Battery Text
 		Text {
 			text: battery + "%"
+			color: brightSnow
 		}
 	}
 
@@ -77,6 +89,7 @@ PanelWindow {
 		id: time
 		anchors.centerIn: parent
 		text: systemTime
+		color: brightSnow
 	}
 	
 }
