@@ -13,8 +13,8 @@ PanelWindow {
 
 	property var paleGreen: "#98fb98"
 
-	property int battery: -1
-	property bool charging: false
+	property int batteryPercentage: -1
+	property bool batteryCharging: false
 	property var systemTime
 
 	// Time Process
@@ -38,13 +38,13 @@ PanelWindow {
 
 	// Battery 
 
-	// Capacity
+	// Percentage
 	Process {
-		id: getBatteryCapacity
+		id: getBatteryPercentage
 		command: ["cat", "/sys/class/power_supply/BAT0/capacity"]
 		running: true
 		stdout: StdioCollector {
-			onStreamFinished: battery = parseInt(this.text)
+			onStreamFinished: batteryPercentage = parseInt(this.text)
 		}
 	}
 	// Status
@@ -53,7 +53,7 @@ PanelWindow {
 		command: ["cat", "/sys/class/power_supply/BAT0/status"]
 		running: true
 		stdout: StdioCollector {
-			onStreamFinished: charging = (this.text.trim() === "Charging")
+			onStreamFinished: batteryCharging = (this.text.trim() === "Charging")
 		}
 	}
 	Timer {
@@ -61,7 +61,7 @@ PanelWindow {
 		running: true
 		repeat: true
 		onTriggered: {
-			getBatteryCapacity.running = true
+			getBatteryPercentage.running = true
 			getBatteryStatus.running = true
 		}
 	}
@@ -95,8 +95,8 @@ PanelWindow {
 
 		// Battery Text
 		Text {
-			text: battery + "%"
-			color: charging ? paleGreen : brightSnow
+			text: batteryPercentage + "%"
+			color: batteryCharging ? paleGreen : brightSnow
 		}
 	}
 
