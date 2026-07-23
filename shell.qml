@@ -5,6 +5,13 @@ import Quickshell.Hyprland
 import QtQuick.Layouts
 
 PanelWindow {
+	readonly property int batteryStatus_Healthy: 0
+	readonly property int batteryStatus_Charging: 1
+	readonly property int batteryStatus_Low: 2
+	readonly property int batteryStatus_Critical: 3
+
+	property bool batteryCharging: false
+
 	property var onyx: "#0F0F0F"
 	property var gunMetal: "#343A40"
 	property var ironGrey: "#495057"
@@ -12,9 +19,11 @@ PanelWindow {
 	property var brightSnow: "#F8F9FA"
 
 	property var paleGreen: "#98fb98"
+	property var yellow: "#FFFF00"
+	property var red: "#FF0000"
 
 	property int batteryPercentage: -1
-	property bool batteryCharging: false
+	property int currentBatteryStatus: batteryStatus_Healthy
 	property var systemTime
 
 	// Time Process
@@ -44,7 +53,23 @@ PanelWindow {
 		command: ["cat", "/sys/class/power_supply/BAT0/capacity"]
 		running: true
 		stdout: StdioCollector {
-			onStreamFinished: batteryPercentage = parseInt(this.text)
+			onStreamFinished: { 
+				batteryPercentage = parseInt(this.text)
+				if(!batteryCharging) {
+					if(batteryPercentage <= 15) {
+						currentBatteryStatus = batteryStatus_Critical
+					}
+					else if (batteryPercentage <= 25) {
+						currentBatteryStatus = batteryStatus_Low
+					}
+					else {
+						currentBatteryStatus = batteryStatus_Healthy
+					}
+				}
+				else {
+					currentBatteryStatus = batteryStatus_Charging
+				}
+			}
 		}
 	}
 	// Status
@@ -96,7 +121,15 @@ PanelWindow {
 		// Battery Text
 		Text {
 			text: batteryPercentage + "%"
-			color: batteryCharging ? paleGreen : brightSnow
+			function getColorByBatteryStatus() {
+				switch(currentBatteryStatus) {
+					case batteryStatus_Critical: return red;
+					case batteryStatus_Low: return yellow;
+					case batteryStatus_Charging: return paleGreen;
+					case batteryStatus_Healthy: return brightSnow;
+				}
+			}
+			color: getColorByBatteryStatus()
 		}
 	}
 
