@@ -5,26 +5,27 @@ import Quickshell.Hyprland
 import QtQuick.Layouts
 
 PanelWindow {
+	// Battery States
 	readonly property int batteryStatus_Healthy: 0
 	readonly property int batteryStatus_Charging: 1
 	readonly property int batteryStatus_Low: 2
 	readonly property int batteryStatus_Critical: 3
 
+	// Colors
+	readonly property var onyx: "#0F0F0F"
+	readonly property var gunMetal: "#343A40"
+	readonly property var ironGrey: "#495057"
+	readonly property var slateGrey: "#6C757D"
+	readonly property var brightSnow: "#F8F9FA"
+	readonly property var paleGreen: "#98fb98"
+	readonly property var yellow: "#FFFF00"
+	readonly property var red: "#FF0000"
+
+	// Variables
 	property bool batteryCharging: false
-
-	property var onyx: "#0F0F0F"
-	property var gunMetal: "#343A40"
-	property var ironGrey: "#495057"
-	property var slateGrey: "#6C757D"
-	property var brightSnow: "#F8F9FA"
-
-	property var paleGreen: "#98fb98"
-	property var yellow: "#FFFF00"
-	property var red: "#FF0000"
-
 	property int batteryPercentage: -1
 	property int currentBatteryStatus: batteryStatus_Healthy
-	property var systemTime
+	property var systemTime: ""
 
 	// Time Process
 	Process {
