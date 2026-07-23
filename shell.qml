@@ -5,17 +5,27 @@ import Quickshell.Hyprland
 import QtQuick.Layouts
 
 PanelWindow {
-	property var onyx: "#0F0F0F"
-	property var gunMetal: "#343A40"
-	property var ironGrey: "#495057"
-	property var slateGrey: "#6C757D"
-	property var brightSnow: "#F8F9FA"
+	// Battery States
+	readonly property int batteryStatus_Healthy: 0
+	readonly property int batteryStatus_Charging: 1
+	readonly property int batteryStatus_Low: 2
+	readonly property int batteryStatus_Critical: 3
 
-	property var paleGreen: "#98fb98"
+	// Colors
+	readonly property var onyx: "#0F0F0F"
+	readonly property var gunMetal: "#343A40"
+	readonly property var ironGrey: "#495057"
+	readonly property var slateGrey: "#6C757D"
+	readonly property var brightSnow: "#F8F9FA"
+	readonly property var paleGreen: "#98fb98"
+	readonly property var yellow: "#FFFF00"
+	readonly property var red: "#FF0000"
 
-	property int battery: -1
-	property bool charging: false
-	property var systemTime
+	// Variables
+	property bool batteryCharging: false
+	property int batteryPercentage: -1
+	property int currentBatteryStatus: batteryStatus_Healthy
+	property var systemTime: ""
 
 	// Time Process
 	Process {
@@ -38,13 +48,29 @@ PanelWindow {
 
 	// Battery 
 
-	// Capacity
+	// Percentage
 	Process {
-		id: getBatteryCapacity
+		id: getBatteryPercentage
 		command: ["cat", "/sys/class/power_supply/BAT0/capacity"]
 		running: true
 		stdout: StdioCollector {
-			onStreamFinished: battery = parseInt(this.text)
+			onStreamFinished: { 
+				batteryPercentage = parseInt(this.text)
+				if(!batteryCharging) {
+					if(batteryPercentage <= 15) {
+						currentBatteryStatus = batteryStatus_Critical
+					}
+					else if (batteryPercentage <= 25) {
+						currentBatteryStatus = batteryStatus_Low
+					}
+					else {
+						currentBatteryStatus = batteryStatus_Healthy
+					}
+				}
+				else {
+					currentBatteryStatus = batteryStatus_Charging
+				}
+			}
 		}
 	}
 	// Status
@@ -53,7 +79,7 @@ PanelWindow {
 		command: ["cat", "/sys/class/power_supply/BAT0/status"]
 		running: true
 		stdout: StdioCollector {
-			onStreamFinished: charging = (this.text.trim() === "Charging")
+			onStreamFinished: batteryCharging = (this.text.trim() === "Charging")
 		}
 	}
 	Timer {
@@ -61,7 +87,7 @@ PanelWindow {
 		running: true
 		repeat: true
 		onTriggered: {
-			getBatteryCapacity.running = true
+			getBatteryPercentage.running = true
 			getBatteryStatus.running = true
 		}
 	}
@@ -95,8 +121,16 @@ PanelWindow {
 
 		// Battery Text
 		Text {
-			text: battery + "%"
-			color: charging ? paleGreen : brightSnow
+			text: batteryPercentage + "%"
+			function getColorByBatteryStatus() {
+				switch(currentBatteryStatus) {
+					case batteryStatus_Critical: return red;
+					case batteryStatus_Low: return yellow;
+					case batteryStatus_Charging: return paleGreen;
+					case batteryStatus_Healthy: return brightSnow;
+				}
+			}
+			color: getColorByBatteryStatus()
 		}
 	}
 
