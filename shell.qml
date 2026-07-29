@@ -23,15 +23,10 @@ Scope {
 			anchors.margins: 2 
 
 			// Workspaces
-			Repeater {
-				model: 10
-				Text {
-					property var workspace: Hyprland.workspaces.values.find(w => w.id === index + 1)
-					property bool isActive: Hyprland.focusedWorkspace?.id === (index + 1)
-					text: index + 1
-					color: isActive ? colors.brightSnow : (workspace ? colors.slateGrey : colors.gunMetal)
-					font { pixelSize: 14 }
-				}
+			WorkspaceWidget {
+				activeColor: colors.brightSnow
+				usedColor: colors.slateGrey
+				unusedColor: colors.gunMetal
 			}
 			
 			Item { Layout.fillWidth: true }
