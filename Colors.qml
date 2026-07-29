@@ -1,5 +1,7 @@
 import Quickshell
 Scope {
+	readonly property var transparent: "#00000000"
+	readonly property var halfTransparent: "#80000000"
 	readonly property var onyx: "#0F0F0F"
 	readonly property var gunMetal: "#343A40"
 	readonly property var ironGrey: "#495057"
