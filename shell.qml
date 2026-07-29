@@ -7,6 +7,7 @@ Scope {
 	Colors { id: colors }
 	Battery { id: battery }
 	Time { id: time }
+	Margins { id: margins }
 
 	readonly property var background: colors.onyx
 
@@ -16,52 +17,49 @@ Scope {
 			left: true
 			right: true
 		}
+		margins {
+			top: 0
+			left: 0
+			right: 0
+			bottom: 0
+		}
 		exclusionMode: ExclusionMode.Ignore
 		implicitHeight: 40
 
-		color: colors.transparent
+		color: colors.halfTransparent
 
 		RowLayout {
 			anchors.fill: parent
-			anchors.margins: 2 
 
 			// Workspaces
 			WorkspaceWidget {
+				id: workspaceWidget
 				activeColor: colors.brightSnow
 				usedColor: colors.slateGrey
 				unusedColor: colors.gunMetal
 				backgroundColor: colors.onyx
+				Layout.alignment: Qt.AlignVCenter
 			}
 
+			// Filler Item
 			Item { Layout.fillWidth: true }
 
-			Rectangle {
-				implicitWidth: batteryWidget.width + 20
-				implicitHeight: batteryWidget.height + 10
-				color: background
-				radius: 15
-				BatteryWidget { 
-					id: batteryWidget
-					anchors.centerIn: parent
-					percentage: battery.batteryPercentage 
-					color: battery.getColorByBatteryStatus()
-				}
+			// Battery
+			BatteryWidget { 
+				id: batteryWidget
+				percentage: battery.batteryPercentage 
+				backgroundColor: colors.onyx
+				textColor: battery.getColorByBatteryStatus()
 			}
 		}
 
-		Rectangle {
-			implicitWidth: timeWidget.width + 20
-			implicitHeight: timeWidget.height + 10
-			radius: 15
-			anchors.centerIn: parent
-			color: background
-			TimeWidget {
-				id: timeWidget
-				anchor: parent
-				systemTime: time.systemTime 
-				textColor: colors.brightSnow
-			}
+		// Time
+		TimeWidget {
+			id: timeWidget
+			anchor: parent
+			systemTime: time.systemTime
+			textColor: colors.brightSnow
+			backgroundColor: colors.onyx
 		}
-		
 	}
 }

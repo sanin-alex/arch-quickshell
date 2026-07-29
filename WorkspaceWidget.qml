@@ -9,8 +9,8 @@ Rectangle {
 	required property var backgroundColor
 	color: backgroundColor
 	radius: 15
-	implicitWidth: workspaceRow.width + 20
-	implicitHeight: workspaceRow.height + 10 
+	implicitWidth: 185
+	implicitHeight: 30
 	Row {
 		id: workspaceRow
 		spacing: 8
