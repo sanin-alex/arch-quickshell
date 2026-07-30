@@ -39,7 +39,7 @@ Scope {
 		exclusionMode: ExclusionMode.Ignore
 		implicitHeight: 40
 
-		color: colors.halfTransparent
+		color: colors.transparent
 
 		StackLayout {
 			anchors.centerIn: parent
