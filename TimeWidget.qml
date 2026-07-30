@@ -1,20 +1,18 @@
 import QtQuick
 import QtQuick.Layouts
 
-Rectangle {
+PillWidget {
+	id: root
 	required property var systemTime
 	required property var textColor
-	required property var backgroundColor
-	implicitWidth: 140
-	implicitHeight: 30
-	radius: 15
-	color: backgroundColor
+	pillWidth: 100
 	Text {
 		id: textObj
-		Layout.alignment: Qt.AlignVCenter
+		height: root.implicitHeight
+		verticalAlignment: Text.AlignVCenter
 		anchors.centerIn: parent
 		text: systemTime 
 		color: textColor
-		font { pixelSize: 14 }	
+		font { pixelSize: 15 }	
 	}
 }

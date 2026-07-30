@@ -8,56 +8,9 @@ Scope {
 	Colors { id: colors }
 	Battery { id: battery }
 	Time { id: time }
-	Margins { id: margins }
 
-	readonly property var background: colors.onyx
 	property var activePillIndex: 0
 
-	PanelWindow {
-		anchors {
-			top: true
-			left: true
-			right: true
-		}
-		margins {
-			top: 0
-			left: 0
-			right: 0
-			bottom: 0
-		}
-		exclusionMode: ExclusionMode.Ignore
-		implicitHeight: 40
-
-		color: colors.halfTransparent
-
-		Timer {
-			id: resetPillIndex
-			interval: 1000
-			repeat: false
-			onTriggered: root.activePillIndex = 0
-		}
-
-		StackLayout {
-			anchors.centerIn: parent
-			currentIndex: root.activePillIndex
-			TimeWidget {
-				id: timeWidget
-				systemTime: time.systemTime
-				textColor: colors.brightSnow
-				backgroundColor: colors.onyx
-			}
-
-			WorkspaceWidget {
-				id: workspaceWidget
-				activeColor: colors.brightSnow
-				usedColor: colors.slateGrey
-				unusedColor: colors.gunMetal
-				backgroundColor: colors.onyx
-				Layout.alignment: Qt.AlignVCenter
-			}
-		}
-
-	}
 	Connections {
 		target: Hyprland
 		function onFocusedWorkspaceChanged() {
@@ -70,37 +23,42 @@ Scope {
 		resetPillIndex.restart()
 	}
 
-		//RowLayout {
-		//	anchors.fill: parent
+	Timer {
+		id: resetPillIndex
+		interval: 2000
+		repeat: false
+		onTriggered: root.activePillIndex = 0
+	}
 
-		//	// Workspaces
-		//	WorkspaceWidget {
-		//		id: workspaceWidget
-		//		activeColor: colors.brightSnow
-		//		usedColor: colors.slateGrey
-		//		unusedColor: colors.gunMetal
-		//		backgroundColor: colors.onyx
-		//		Layout.alignment: Qt.AlignVCenter
-		//	}
+	PanelWindow {
+		anchors {
+			top: true
+			left: true
+			right: true
+		}
+		exclusionMode: ExclusionMode.Ignore
+		implicitHeight: 40
 
-		//	// Filler Item
-		//	Item { Layout.fillWidth: true }
+		color: colors.halfTransparent
 
-		//	// Battery
-		//	BatteryWidget { 
-		//		id: batteryWidget
-		//		percentage: battery.batteryPercentage 
-		//		backgroundColor: colors.onyx
-		//		textColor: battery.getColorByBatteryStatus()
-		//	}
-		//}
+		StackLayout {
+			anchors.centerIn: parent
+			currentIndex: root.activePillIndex
+			implicitWidth: children[currentIndex] ? children[currentIndex].implicitWidth : 0
 
-		//// Time
-		//TimeWidget {
-		//	id: timeWidget
-		//	anchor: parent
-		//	systemTime: time.systemTime
-		//	textColor: colors.brightSnow
-		//	backgroundColor: colors.onyx
-		//}
+			TimeWidget {
+				id: timeWidget
+				systemTime: time.systemTime
+				textColor: colors.brightSnow
+			}
+
+			WorkspaceWidget {
+				id: workspaceWidget
+				activeColor: colors.brightSnow
+				usedColor: colors.slateGrey
+				unusedColor: colors.gunMetal
+			}
+		}
+	}
+
 }

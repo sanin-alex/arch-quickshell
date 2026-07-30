@@ -6,16 +6,18 @@ Scope {
 	id: root
 	// Variables
 	property var systemTime: ""
+	property var systemDate: ""
 
 	// Time Process
 	Process {
 		id: getTime
-		command: [`date`, `+%H:%M:%S-%d/%m/%y`]
+		command: [`date`, `+%H:%M-%d/%m/%y`]
 		running: true
 		stdout: SplitParser {
 			onRead: data => {
 				var splitData = data.trim().split("-")	
-				root.systemTime = splitData[0] + " | " + splitData[1]
+				root.systemTime = splitData[0]
+				root.systemDate = splitData[1]
 			}
 		}
 	}
