@@ -2,11 +2,9 @@ import QtQuick
 import QtQuick.Layouts
 
 Rectangle {
-	required property var anchor
 	required property var systemTime
 	required property var textColor
 	required property var backgroundColor
-	anchors.centerIn: anchor
 	implicitWidth: 140
 	implicitHeight: 30
 	radius: 15
