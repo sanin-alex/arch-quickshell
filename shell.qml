@@ -46,6 +46,13 @@ Scope {
 			currentIndex: root.activePillIndex
 			implicitWidth: children[currentIndex] ? children[currentIndex].implicitWidth : 0
 
+			Behavior on implicitWidth {
+				NumberAnimation {
+					duration: 200
+					easing.type: Easing.InOutQuad
+				}
+			}
+			
 			TimeWidget {
 				id: timeWidget
 				systemTime: time.systemTime
