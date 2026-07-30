@@ -2,15 +2,12 @@ import QtQuick
 import Quickshell
 import Quickshell.Hyprland
 
-Rectangle {
+PillWidget{
+	id: root
 	required property var activeColor 
 	required property var usedColor
 	required property var unusedColor
-	required property var backgroundColor
-	color: backgroundColor
-	radius: 15
-	implicitWidth: 185
-	implicitHeight: 30
+	pillWidth: 185
 	Row {
 		id: workspaceRow
 		spacing: 8
@@ -20,9 +17,11 @@ Rectangle {
 			Text {
 				property var workspace: Hyprland.workspaces.values.find(w => w.id === index + 1)
 				property bool isActive: Hyprland.focusedWorkspace?.id === (index + 1)
+				height: root.implicitHeight
+				verticalAlignment: Text.AlignVCenter
 				text: index + 1
 				color: isActive ? activeColor : (workspace ? usedColor : unusedColor)
-				font { pixelSize: 14 }
+				font.pixelSize: 15 
 			}
 		}
 	}
