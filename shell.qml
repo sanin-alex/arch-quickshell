@@ -18,16 +18,25 @@ Scope {
 		}
 	}
 
+	function triggerTimeView() {
+		timeWidget.opacity = 1
+		workspaceWidget.opacity = 0
+		pillWidget.pillWidth = 100
+		resetPillView.restart()
+	}
+
 	function triggerWorkspaceView() {
-		root.activePillIndex = 1
-		resetPillIndex.restart()
+		timeWidget.opacity = 0
+		workspaceWidget.opacity = 1
+		pillWidget.pillWidth = 185
+		resetPillView.restart()
 	}
 
 	Timer {
-		id: resetPillIndex
+		id: resetPillView
 		interval: 2000
 		repeat: false
-		onTriggered: root.activePillIndex = 0
+		onTriggered: triggerTimeView()
 	}
 
 	PanelWindow {
@@ -36,27 +45,34 @@ Scope {
 			left: true
 			right: true
 		}
+
 		exclusionMode: ExclusionMode.Ignore
 		implicitHeight: 40
 
 		color: colors.transparent
 
-		StackLayout {
+		PillWidget {
+			id: pillWidget
+			pillWidth: 100
 			anchors.centerIn: parent
-			currentIndex: root.activePillIndex ? root.activePillIndex : 0
-			implicitWidth: children[currentIndex] ? children[currentIndex].implicitWidth : 0
-			
+
 			Behavior on implicitWidth {
 				NumberAnimation {
 					duration: 200
 					easing.type: Easing.InOutQuad
 				}
 			}
-			
+
 			TimeWidget {
 				id: timeWidget
 				systemTime: time.systemTime
 				textColor: colors.brightSnow
+				Behavior on opacity {
+					NumberAnimation {
+						duration: 200
+						easing.type: Easing.InOutQuad
+					}
+				}
 			}
 
 			WorkspaceWidget {
@@ -64,6 +80,13 @@ Scope {
 				activeColor: colors.brightSnow
 				usedColor: colors.slateGrey
 				unusedColor: colors.gunMetal
+				opacity: 0
+				Behavior on opacity {
+					NumberAnimation {
+						duration: 200
+						easing.type: Easing.InOutQuad
+					}
+				}
 			}
 		}
 	}
