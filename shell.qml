@@ -43,9 +43,9 @@ Scope {
 
 		StackLayout {
 			anchors.centerIn: parent
-			currentIndex: root.activePillIndex
+			currentIndex: root.activePillIndex ? root.activePillIndex : 0
 			implicitWidth: children[currentIndex] ? children[currentIndex].implicitWidth : 0
-
+			
 			Behavior on implicitWidth {
 				NumberAnimation {
 					duration: 200
@@ -67,5 +67,4 @@ Scope {
 			}
 		}
 	}
-
 }
