@@ -36,18 +36,15 @@ Scope {
 		id: resetPillView
 		interval: 2000
 		repeat: false
-		onTriggered: triggerTimeView()
+		onTriggered: root.triggerTimeView()
 	}
 
 	PanelWindow {
-		anchors {
-			top: true
-			left: true
-			right: true
-		}
+		anchors.top: true
 
 		exclusionMode: ExclusionMode.Ignore
 		implicitHeight: 40
+		implicitWidth: 200
 
 		color: colors.transparent
 
