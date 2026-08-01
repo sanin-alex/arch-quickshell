@@ -8,7 +8,7 @@ Rectangle {
 	color: colors.onyx
 	radius: 15
 	implicitWidth: pillWidth
-	implicitHeight: 30
+	implicitHeight: 25
 	border {
 		color: colors.brightSnow
 		width: 1

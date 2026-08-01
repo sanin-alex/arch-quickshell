@@ -1,19 +1,12 @@
 import QtQuick
-import Quickshell
+
 Rectangle {
-	required property string percentage
-	required property var textColor
-	required property var backgroundColor
-	required property var widthMargin
-	required property var heightMargin
-	implicitWidth: textObject.width + widthMargin
-	implicitHeight: textObject.height + heightMargin
-	color: backgroundColor
+	Battery { id: battery }
+	Colors { id: colors }
+	implicitWidth: 20
+	implicitHeight: 7
+	color: colors.brightSnow
 	radius: 15
-	Text {
-		id: textObject
-		anchors.centerIn: parent
-		text: percentage + "%"
-		color: textColor
-	}
+	border.width: 2
+	border.color: colors.brightSnow
 }

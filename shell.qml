@@ -1,7 +1,6 @@
 import Quickshell
 import QtQuick
 import Quickshell.Hyprland
-import QtQuick.Layouts
 
 Scope {
 	id: root
@@ -43,7 +42,7 @@ Scope {
 		anchors.top: true
 
 		exclusionMode: ExclusionMode.Ignore
-		implicitHeight: 40
+		implicitHeight: 35
 		implicitWidth: 200
 
 		color: colors.transparent

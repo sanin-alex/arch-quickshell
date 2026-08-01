@@ -1,13 +1,17 @@
 import QtQuick
 import QtQuick.Layouts
 
-Text {
+Row {
 	required property var systemTime
 	required property var textColor
-	height: root.implicitHeight
-	verticalAlignment: Text.AlignVCenter
 	anchors.centerIn: parent
-	text: systemTime 
-	color: textColor
-	font { pixelSize: 15 }	
+	Text {
+		height: root.implicitHeight
+		verticalAlignment: Text.AlignVCenter
+		text: systemTime 
+		color: textColor
+		font { pixelSize: 15 }	
+	}
+	BatteryWidget {
+	}
 }
