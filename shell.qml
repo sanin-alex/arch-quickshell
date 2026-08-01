@@ -17,15 +17,15 @@ Scope {
 		}
 	}
 
-	function triggerTimeView() {
-		timeWidget.opacity = 1
+	function triggerMainView() {
+		mainWidget.opacity = 1
 		workspaceWidget.opacity = 0
 		pillWidget.pillWidth = 100
 		resetPillView.restart()
 	}
 
 	function triggerWorkspaceView() {
-		timeWidget.opacity = 0
+		mainWidget.opacity = 0
 		workspaceWidget.opacity = 1
 		pillWidget.pillWidth = 185
 		resetPillView.restart()
@@ -35,7 +35,7 @@ Scope {
 		id: resetPillView
 		interval: 2000
 		repeat: false
-		onTriggered: root.triggerTimeView()
+		onTriggered: root.triggerMainView()
 	}
 
 	PanelWindow {
