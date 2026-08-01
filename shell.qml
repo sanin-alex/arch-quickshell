@@ -59,10 +59,8 @@ Scope {
 				}
 			}
 
-			TimeWidget {
-				id: timeWidget
-				systemTime: time.systemTime
-				textColor: colors.brightSnow
+			MainWidget {
+				id: mainWidget
 				Behavior on opacity {
 					NumberAnimation {
 						duration: 200
