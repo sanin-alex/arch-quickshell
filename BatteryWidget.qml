@@ -25,6 +25,7 @@ Rectangle {
 			bottom: parent.bottom
 			margins: 2.5
 		}
-		color: colors.brightSnow
+		color: battery.getColorByBatteryStatus()
+		Component.onCompleted: { console.log(battery.getColorByBatteryStatus()) }
 	}
 }
