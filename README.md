@@ -1,9 +1,10 @@
 # Simple Quickshell Bar
-A simple Taskbar for hyprland, made with quickshell.
-<img width="1920" height="40" alt="image" src="https://github.com/user-attachments/assets/2b220f3b-e4a9-4422-87b5-ff12af130543" />
+A simple Taskbar for hyprland, made with quickshell.<br />
+![](https://github.com/sanin-alex/arch-quickshell/blob/main/showcase.gif)
+<br />
 Shows:
 - Hyprland workspaces
-- Date & Time
+- Time
 - Battery capacity and status
 
 ### Install & Run
