@@ -15,7 +15,7 @@ Rectangle {
 
 	Rectangle {
 		id: batteryIndicator
-		property var fullWidth: root.implicitWidth - 4
+		property var fullWidth: root.implicitWidth - 5
 		property var currentWidth: fullWidth * (battery.batteryPercentage / 100)
 		implicitWidth: currentWidth
 		radius: 15
@@ -28,4 +28,16 @@ Rectangle {
 		color: battery.getColorByBatteryStatus()
 		Component.onCompleted: { console.log(battery.getColorByBatteryStatus()) }
 	}
+	Rectangle {
+        anchors {
+            left: batteryIndicator.right
+			leftMargin: 1
+            verticalCenter: batteryIndicator.verticalCenter
+        }
+
+        width: 2.5
+        height: root.height * 0.4
+        radius: 1
+        color: root.strokeColor
+    }
 }
