@@ -21,7 +21,6 @@ Scope {
 		mainWidget.opacity = 1
 		workspaceWidget.opacity = 0
 		pillWidget.pillWidth = 100
-		resetPillView.restart()
 	}
 
 	function triggerWorkspaceView() {
