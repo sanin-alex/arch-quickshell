@@ -1,11 +1,9 @@
 import QtQuick
-
+import Quickshell
 Text {
-	required property var anchor
 	required property var systemTime
 	required property var textColor
-
-	anchors.centerIn: anchor
 	text: systemTime 
 	color: textColor
+	font { pixelSize: 15 }	
 }

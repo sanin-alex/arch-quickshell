@@ -4,7 +4,6 @@ import Quickshell.Io
 
 Scope {
 	id: root
-
 	Colors { id: colors }
 
 	// Battery States
@@ -17,7 +16,6 @@ Scope {
 	property int batteryPercentage: -1
 	property int currentBatteryStatus: batteryStatus_Healthy
 
-	// Battery 
 	// Percentage
 	Process {
 		id: getBatteryPercentage
@@ -70,5 +68,4 @@ Scope {
 			case root.batteryStatus_Healthy: return colors.brightSnow;
 		}
 	}
-
 }

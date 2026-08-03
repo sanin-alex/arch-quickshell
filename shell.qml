@@ -1,47 +1,86 @@
 import Quickshell
 import QtQuick
 import Quickshell.Hyprland
-import QtQuick.Layouts
 
 Scope {
+	id: root
 	Colors { id: colors }
 	Battery { id: battery }
 	Time { id: time }
 
-	PanelWindow {
-		anchors {
-			top: true
-			left: true
-			right: true
+	property var activePillIndex: 0
+
+	Connections {
+		target: Hyprland
+		function onFocusedWorkspaceChanged() {
+			root.triggerWorkspaceView()
 		}
-		implicitHeight: 20
+	}
 
-		color: colors.onyx
+	function triggerMainView() {
+		mainWidget.opacity = 1
+		workspaceWidget.opacity = 0
+		pillWidget.pillWidth = 100
+	}
 
-		RowLayout {
-			anchors.fill: parent
-			anchors.margins: 2 
+	function triggerWorkspaceView() {
+		mainWidget.opacity = 0
+		workspaceWidget.opacity = 1
+		pillWidget.pillWidth = 185
+		resetPillView.restart()
+	}
 
-			// Workspaces
+	Timer {
+		id: resetPillView
+		interval: 2000
+		repeat: false
+		onTriggered: root.triggerMainView()
+	}
+
+	PanelWindow {
+		anchors.top: true
+
+		exclusionMode: ExclusionMode.Ignore
+		implicitHeight: 35
+		implicitWidth: 200
+
+		color: colors.transparent
+
+		PillWidget {
+			id: pillWidget
+			pillWidth: 100
+			anchors.centerIn: parent
+
+			Behavior on implicitWidth {
+				NumberAnimation {
+					duration: 200
+					easing.type: Easing.InOutQuad
+				}
+			}
+
+			MainWidget {
+				id: mainWidget
+				Behavior on opacity {
+					NumberAnimation {
+						duration: 200
+						easing.type: Easing.InOutQuad
+					}
+				}
+			}
+
 			WorkspaceWidget {
+				id: workspaceWidget
 				activeColor: colors.brightSnow
 				usedColor: colors.slateGrey
 				unusedColor: colors.gunMetal
-			}
-			
-			Item { Layout.fillWidth: true }
-			
-			BatteryWidget { 
-				percentage: battery.batteryPercentage 
-				color: battery.getColorByBatteryStatus()
+				opacity: 0
+				Behavior on opacity {
+					NumberAnimation {
+						duration: 200
+						easing.type: Easing.InOutQuad
+					}
+				}
 			}
 		}
-	
-		TimeWidget {
-			anchor: parent
-			systemTime: time.systemTime 
-			textColor: colors.brightSnow
-		}
-		
 	}
 }
