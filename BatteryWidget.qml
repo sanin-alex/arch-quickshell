@@ -30,13 +30,13 @@ Rectangle {
 	}
 	Rectangle {
         anchors {
-            left: batteryIndicator.right
-			leftMargin: 1
-            verticalCenter: batteryIndicator.verticalCenter
+            left: root.right
+			leftMargin: -1.5
+            verticalCenter: root.verticalCenter
         }
 
         width: 2.5
-        height: root.height * 0.4
+        height: 4
         radius: 1
         color: root.strokeColor
     }
