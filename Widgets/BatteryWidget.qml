@@ -40,6 +40,6 @@ Rectangle {
         width: 2.5
         height: 4
         radius: 1
-        color: root.strokeColor
+        color: colors.brightSnow
     }
 }
