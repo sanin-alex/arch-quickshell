@@ -11,6 +11,9 @@ Scope {
 	Battery { id: battery }
 	Time { id: time }
 
+    readonly property var mainWidgetWidth: 125
+    readonly property var workspaceWidgetWidth: 185
+
 	property var activePillIndex: 0
 
 	Connections {
@@ -23,13 +26,13 @@ Scope {
 	function triggerMainView() {
 		mainWidget.opacity = 1
 		workspaceWidget.opacity = 0
-		pillWidget.pillWidth = 100
+		pillWidget.pillWidth = mainWidgetWidth 
 	}
 
 	function triggerWorkspaceView() {
 		mainWidget.opacity = 0
 		workspaceWidget.opacity = 1
-		pillWidget.pillWidth = 185
+		pillWidget.pillWidth = workspaceWidgetWidth
 		resetPillView.restart()
 	}
 
@@ -45,13 +48,13 @@ Scope {
 
 		exclusionMode: ExclusionMode.Ignore
 		implicitHeight: 35
-		implicitWidth: 200
+		implicitWidth: 185
 
 		color: colors.transparent
 
 		PillWidget {
 			id: pillWidget
-			pillWidth: 100
+			pillWidth: mainWidgetWidth
 			anchors.centerIn: parent
 
 			Behavior on implicitWidth {

@@ -6,6 +6,7 @@ Shows:
 - Hyprland workspaces
 - Time
 - Battery capacity and status
+- Wifi status & signal strength
 
 ### Install & Run
 Before installing and running make sure to install the quickshell package.<br />
