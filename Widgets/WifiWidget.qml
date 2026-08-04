@@ -6,7 +6,7 @@ import "../Types"
 Text {
     Colors { id: colors }
     Wifi { id: wifi }
-	text: wifi.currentNetwork 
+	text: wifi.signalStrengthSymbol 
     color: colors.brightSnow
 	font { pixelSize: 15 }	
 }
