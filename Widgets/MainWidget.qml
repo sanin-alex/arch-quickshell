@@ -8,11 +8,19 @@ RowLayout {
 	Colors { id: colors }
 
 	anchors.centerIn: parent
+
+    WifiWidget {
+    }
+
+    Item { Layout.fillWidth: true }
+
 	TimeWidget {
 		systemTime: time.systemTime
 		textColor: colors.brightSnow
 	}
-	Item { Layout.fillWidth: true }
+
+    Item { Layout.fillWidth: true }
+
 	BatteryWidget {
 		Layout.alignment: Qt.AlignVCenter
 	}

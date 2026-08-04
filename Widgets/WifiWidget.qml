@@ -4,7 +4,9 @@ import Quickshell
 import "../Types"
 
 Text {
-	text: Wifi.currentNetwork 
-    color: Colors.brightSnow
+    Colors { id: colors }
+    Wifi { id: wifi }
+	text: wifi.currentNetwork 
+    color: colors.brightSnow
 	font { pixelSize: 15 }	
 }
