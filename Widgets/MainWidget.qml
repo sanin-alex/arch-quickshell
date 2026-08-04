@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Layouts
 
+import "../Types"
+
 RowLayout {
 	Time { id: time }
 	Colors { id: colors }

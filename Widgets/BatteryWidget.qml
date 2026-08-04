@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Layouts
 
+import "../Types"
+
 Rectangle {
 	Battery { id: battery }
 	Colors { id: colors }
