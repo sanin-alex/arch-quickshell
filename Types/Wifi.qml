@@ -16,7 +16,7 @@ Scope {
                 var network = parseOutputText(outputText)
                 currentNetwork = network.ssid
                 console.log(network.signalStrength)
-                signalStrengthSymbol = getWifiSymbol(network.signalStrength)
+                signalStrengthSymbol = getWifiSymbol(network)
 			}
 		}
 	}
@@ -48,11 +48,12 @@ Scope {
         return result
     }
 
-    function getWifiSymbol(signalStrength) {
-        if(signalStrength <= 10) { return "󰤫" }
-        if(signalStrength <= 25) { return "󰤯" }
-        if(signalStrength <= 50) { return "󰤟" }
-        if(signalStrength <= 75) { return "󰤥" }
-        if(signalStrength <= 100) { return "󰤨" }
+    function getWifiSymbol(network) {
+        if(!network.connected) { return "󰤭" }
+        if(network.signalStrength <= 10) { return "󰤫" }
+        if(network.signalStrength <= 25) { return "󰤯" }
+        if(network.signalStrength <= 50) { return "󰤟" }
+        if(network.signalStrength <= 75) { return "󰤥" }
+        if(network.signalStrength <= 100) { return "󰤨" }
     }
 }
