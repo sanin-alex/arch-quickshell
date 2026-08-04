@@ -1,5 +1,6 @@
 import QtQuick
 import Quickshell
+
 Text {
 	required property var systemTime
 	required property var textColor

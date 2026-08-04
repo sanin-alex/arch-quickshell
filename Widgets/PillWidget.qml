@@ -1,6 +1,8 @@
 import QtQuick
 import Quickshell
 
+import "../Types"
+
 Rectangle {
 	required property var pillWidth
 	Colors { id: colors }

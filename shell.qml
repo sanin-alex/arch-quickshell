@@ -2,6 +2,9 @@ import Quickshell
 import QtQuick
 import Quickshell.Hyprland
 
+import "Types"
+import "Widgets"
+
 Scope {
 	id: root
 	Colors { id: colors }
