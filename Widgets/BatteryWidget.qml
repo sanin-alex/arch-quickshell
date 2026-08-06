@@ -28,7 +28,6 @@ Rectangle {
 			margins: 2.5
 		}
 		color: battery.getColorByBatteryStatus()
-		Component.onCompleted: { console.log(battery.getColorByBatteryStatus()) }
 	}
 	Rectangle {
         anchors {

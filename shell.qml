@@ -19,14 +19,6 @@ Scope {
 
 	property var activePillIndex: 0
 
-    onIsHoveredChanged: {
-        if(isHovered) {
-            pillWidget.implicitWidth = extendedWidth
-        } else {
-            triggerMainView()
-        }
-    }
-
 	Connections {
 		target: Hyprland
 		function onFocusedWorkspaceChanged() {
@@ -46,6 +38,14 @@ Scope {
 		pillWidget.pillWidth = workspaceWidgetWidth
 		resetPillView.restart()
 	}
+
+    onIsHoveredChanged: {
+        if(isHovered) {
+            pillWidget.pillWidth = extendedWidth
+        } else {
+            triggerMainView()
+        }
+    }
 
 	Timer {
 		id: resetPillView
