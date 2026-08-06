@@ -15,13 +15,13 @@ Rectangle {
 	color: colors.onyx
 
     property bool extended: false
-    property int coverWidth: 20
+    property int coverWidth: 30
 
     onExtendedChanged: {
         if(extended) {
-            percentageText.anchors.leftMargin = coverWidth
+            percentageText.anchors.leftMargin = coverWidth-5
         } else {
-            percentageText.anchors.leftMargin = 0 
+            percentageText.anchors.leftMargin = 0
         }
         console.log(extended)
     }
@@ -29,16 +29,17 @@ Rectangle {
     Rectangle {
         id: cover
         anchors.centerIn: parent
-        implicitWidth: 20
-        implicitHeight: 15
+        implicitWidth: root.coverWidth
+        implicitHeight: 20
         color: colors.onyx
         z: -1
     }
     Text {
         id: percentageText
-        text: battery.batteryPercentage
+        text: battery.batteryPercentage + "%"
         color: colors.brightSnow
         anchors.left: root.left
+        anchors.verticalCenter: root.verticalCenter
 
         Behavior on anchors.leftMargin {
             NumberAnimation {
