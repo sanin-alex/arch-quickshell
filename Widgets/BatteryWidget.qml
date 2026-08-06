@@ -15,6 +15,33 @@ Rectangle {
 	border.color: colors.brightSnow
 	color: colors.onyx
 
+    property bool extended: false 
+
+    Rectangle {
+        id: cover
+        anchors.centerIn: parent
+        implicitWidth: 20
+        implicitHeight: 15
+        color: colors.onyx
+        z: -1
+    }
+    Text {
+        text: battery.batteryPercentage
+        color: colors.brightSnow
+        anchors {
+            left: root.extended ? root.right : root.left 
+            verticalCenter: root.verticalCenter
+        }
+
+        Behavior on anchors.left {
+            NumberAnimation {
+                duration: 200
+                easing.type: Easing.InOutQuad
+            }
+        }
+        z: -2
+    }
+
 	Rectangle {
 		id: batteryIndicator
 		property var fullWidth: root.implicitWidth - 5
