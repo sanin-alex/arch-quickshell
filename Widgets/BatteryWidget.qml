@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Layouts
 
 import "../Types"
 
@@ -15,7 +14,17 @@ Rectangle {
 	border.color: colors.brightSnow
 	color: colors.onyx
 
-    property bool extended: false 
+    property bool extended: false
+    property int coverWidth: 20
+
+    onExtendedChanged: {
+        if(extended) {
+            percentageText.anchors.leftMargin = coverWidth
+        } else {
+            percentageText.anchors.leftMargin = 0 
+        }
+        console.log(extended)
+    }
 
     Rectangle {
         id: cover
@@ -26,14 +35,12 @@ Rectangle {
         z: -1
     }
     Text {
+        id: percentageText
         text: battery.batteryPercentage
         color: colors.brightSnow
-        anchors {
-            left: root.extended ? root.right : root.left 
-            verticalCenter: root.verticalCenter
-        }
+        anchors.left: root.left
 
-        Behavior on anchors.left {
+        Behavior on anchors.leftMargin {
             NumberAnimation {
                 duration: 200
                 easing.type: Easing.InOutQuad

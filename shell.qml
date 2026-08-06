@@ -83,6 +83,7 @@ Scope {
 
 			MainWidget {
 				id: mainWidget
+                isHovered: root.isHovered
 				Behavior on opacity {
 					NumberAnimation {
 						duration: 200

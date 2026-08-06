@@ -6,6 +6,9 @@ import "../Types"
 RowLayout {
 	Time { id: time }
 	Colors { id: colors }
+    id: root
+
+    property bool isHovered
 
 	anchors.centerIn: parent
 
@@ -22,6 +25,7 @@ RowLayout {
     Item { Layout.fillWidth: true }
 
 	BatteryWidget {
+        extended: root.isHovered
 		Layout.alignment: Qt.AlignVCenter
 	}
 }
