@@ -13,8 +13,19 @@ Scope {
 
     readonly property var mainWidgetWidth: 125
     readonly property var workspaceWidgetWidth: 185
+    readonly property var extendedWidth: 400
+
+    readonly property var isHovered: mouseArea.containsMouse
 
 	property var activePillIndex: 0
+
+    onIsHoveredChanged: {
+        if(isHovered) {
+            pillWidget.implicitWidth = extendedWidth
+        } else {
+            triggerMainView()
+        }
+    }
 
 	Connections {
 		target: Hyprland
@@ -48,7 +59,7 @@ Scope {
 
 		exclusionMode: ExclusionMode.Ignore
 		implicitHeight: 35
-		implicitWidth: 185
+		implicitWidth: root.extendedWidth
 
 		color: colors.transparent
 
@@ -63,6 +74,12 @@ Scope {
 					easing.type: Easing.InOutQuad
 				}
 			}
+
+            MouseArea {
+                id: mouseArea
+                anchors.fill: parent
+                hoverEnabled: true
+            }
 
 			MainWidget {
 				id: mainWidget
