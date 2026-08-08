@@ -5,6 +5,7 @@ import "../Types"
 Rectangle {
 	Battery { id: battery }
 	Colors { id: colors }
+    Fonts { id: fonts }
 
 	id: root
 	implicitWidth: 18
@@ -40,6 +41,7 @@ Rectangle {
         color: colors.brightSnow
         anchors.left: root.left
         anchors.verticalCenter: root.verticalCenter
+        font.family: fonts.name
 
         Behavior on anchors.leftMargin {
             NumberAnimation {
