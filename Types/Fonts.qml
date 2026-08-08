@@ -1,6 +1,6 @@
 import QtQuick
 
 FontLoader {
-    id: muring
+    id: retrofloral
     source: "../fonts/retro-floral.regular.otf"
 }

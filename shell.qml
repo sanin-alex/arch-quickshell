@@ -11,9 +11,9 @@ Scope {
 	Battery { id: battery }
 	Time { id: time }
 
-    readonly property var mainWidgetWidth: 125
-    readonly property var workspaceWidgetWidth: 185
-    readonly property var extendedWidth: 325
+    readonly property int mainWidgetWidth: 125
+    readonly property int workspaceWidgetWidth: 185
+    readonly property int extendedWidth: 325
 
     readonly property var isHovered: mouseArea.containsMouse
 

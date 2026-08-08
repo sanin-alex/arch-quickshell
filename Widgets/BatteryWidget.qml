@@ -30,7 +30,6 @@ Rectangle {
         } else {
             root.implicitWidth = standardWidth
         }
-        console.log(extended)
     }
     Text {
         id: percentageText
