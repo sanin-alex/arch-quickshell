@@ -13,6 +13,7 @@ RowLayout {
 	anchors.centerIn: parent
 
     WifiWidget {
+        extended: root.isHovered
     }
 
     Item { Layout.fillWidth: true }
