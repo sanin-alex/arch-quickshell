@@ -11,8 +11,11 @@ Scope {
 	Battery { id: battery }
 	Time { id: time }
 
-    readonly property var mainWidgetWidth: 125
-    readonly property var workspaceWidgetWidth: 185
+    readonly property int mainWidgetWidth: 125
+    readonly property int workspaceWidgetWidth: 185
+    readonly property int extendedWidth: 325
+
+    readonly property var isHovered: mouseArea.containsMouse
 
 	property var activePillIndex: 0
 
@@ -26,15 +29,27 @@ Scope {
 	function triggerMainView() {
 		mainWidget.opacity = 1
 		workspaceWidget.opacity = 0
-		pillWidget.pillWidth = mainWidgetWidth 
+        if(!isHovered) {
+            pillWidget.pillWidth = mainWidgetWidth 
+        }
 	}
 
 	function triggerWorkspaceView() {
 		mainWidget.opacity = 0
 		workspaceWidget.opacity = 1
-		pillWidget.pillWidth = workspaceWidgetWidth
+        if(!isHovered) {
+            pillWidget.pillWidth = workspaceWidgetWidth
+        }
 		resetPillView.restart()
 	}
+
+    onIsHoveredChanged: {
+        if(isHovered) {
+            pillWidget.pillWidth = extendedWidth
+        } else {
+            triggerMainView()
+        }
+    }
 
 	Timer {
 		id: resetPillView
@@ -48,7 +63,7 @@ Scope {
 
 		exclusionMode: ExclusionMode.Ignore
 		implicitHeight: 35
-		implicitWidth: 185
+		implicitWidth: root.extendedWidth
 
 		color: colors.transparent
 
@@ -64,8 +79,15 @@ Scope {
 				}
 			}
 
+            MouseArea {
+                id: mouseArea
+                anchors.fill: parent
+                hoverEnabled: true
+            }
+
 			MainWidget {
 				id: mainWidget
+                isHovered: root.isHovered
 				Behavior on opacity {
 					NumberAnimation {
 						duration: 200

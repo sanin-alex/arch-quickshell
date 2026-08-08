@@ -15,7 +15,6 @@ Scope {
                 var outputText = this.text
                 var network = parseOutputText(outputText)
                 currentNetwork = network.ssid
-                console.log(network.signalStrength)
                 signalStrengthSymbol = getWifiSymbol(network)
 			}
 		}

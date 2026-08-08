@@ -1,9 +1,12 @@
 import QtQuick
-import Quickshell
 import Quickshell.Hyprland
+
+import "../Types"
 
 Row {
 	id: workspaceRow
+    Fonts { id: fonts }
+
 	required property var activeColor 
 	required property var usedColor
 	required property var unusedColor
@@ -19,6 +22,7 @@ Row {
 			text: index + 1
 			color: isActive ? activeColor : (workspace ? usedColor : unusedColor)
 			font.pixelSize: 15 
+            font.family: fonts.name
 		}
 	}
 }
