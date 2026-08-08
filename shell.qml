@@ -29,13 +29,17 @@ Scope {
 	function triggerMainView() {
 		mainWidget.opacity = 1
 		workspaceWidget.opacity = 0
-		pillWidget.pillWidth = mainWidgetWidth 
+        if(!isHovered) {
+            pillWidget.pillWidth = mainWidgetWidth 
+        }
 	}
 
 	function triggerWorkspaceView() {
 		mainWidget.opacity = 0
 		workspaceWidget.opacity = 1
-		pillWidget.pillWidth = workspaceWidgetWidth
+        if(!isHovered) {
+            pillWidget.pillWidth = workspaceWidgetWidth
+        }
 		resetPillView.restart()
 	}
 
