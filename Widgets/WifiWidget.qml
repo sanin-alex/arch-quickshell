@@ -10,7 +10,7 @@ Rectangle {
 
     color: colors.onyx
     property var standardWidth: 24
-    property var extendedWidth: 100
+    property var extendedWidth: 125
     implicitWidth: standardWidth 
     implicitHeight: 15
     clip: true

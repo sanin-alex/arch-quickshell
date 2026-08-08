@@ -15,7 +15,7 @@ Rectangle {
 
     property bool extended: false
     property int standardWidth: 24
-    property int extendedWidth: 100
+    property int extendedWidth: 125
 
     Behavior on implicitWidth {
         NumberAnimation {
