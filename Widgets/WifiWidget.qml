@@ -9,7 +9,7 @@ Rectangle {
     Fonts { id: fonts }
 
     color: colors.onyx
-    property var standardWidth: 15
+    property var standardWidth: 24
     property var extendedWidth: 100
     implicitWidth: standardWidth 
     implicitHeight: 15
@@ -48,7 +48,7 @@ Rectangle {
         color: colors.brightSnow
         font.family: fonts.name
         anchors.right: root.right
-        anchors.rightMargin: 20
+        anchors.rightMargin: 24
         anchors.verticalCenter: root.verticalCenter
     }
 }

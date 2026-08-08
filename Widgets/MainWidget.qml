@@ -23,8 +23,6 @@ RowLayout {
 		textColor: colors.brightSnow
 	}
 
-    Item { Layout.fillWidth: true }
-
 	BatteryWidget {
         extended: root.isHovered
 		Layout.alignment: Qt.AlignVCenter
