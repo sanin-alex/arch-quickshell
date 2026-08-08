@@ -6,6 +6,7 @@ A distraction free, lightweight Taskbar for Hyprland. Only shows what you really
 
 ## Features
 - **Dynamic Notch**: Morphs smoothly to only show you information you actually need to see.
+- **Hover**: When hovering over the Notch, it will expand to show more information.
 - **Hyprland Integration:** When switching workspaces the notch will show active, used and unused workspaces.
 - **Battery**: Icon switches to yellow and red, reminding you to charge your laptop.
 - **WiFi**: Shows signal strength to the current network.
@@ -64,7 +65,7 @@ end)
 # Planned Features
 Since this project is still in active development, features will be added in the future. This list also serves to show what is not yet supported.
 
-- **Hover**: When the mouse is hovered on the notch, it will expand and show all information at once and buttons will be clickable.
+- **Hover**: When the mouse is hovered on the notch buttons will be clickable.
 - **Media Player**: Media Player support to show currently playing media on the device.
 - **Bluetooth Integration**: Show currently connected devices and an interface to manage connections.
 - **WiFi Integration**: Show which network the device is currently connected to and an interface to manage connections. (Currently only shows signal strength to the current network)
