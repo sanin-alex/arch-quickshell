@@ -10,14 +10,17 @@ Scope {
 	Colors { id: colors }
 	Battery { id: battery }
 	Time { id: time }
+    Config { id: config }
 
-    readonly property int mainWidgetWidth: 125
-    readonly property int workspaceWidgetWidth: 185
-    readonly property int extendedWidth: 325
+    readonly property int mainWidgetWidth: config.mainWidgetWidth
+    readonly property int workspaceWidgetWidth: config.workspaceWidgetWidth
+    readonly property int extendedWidth: config.extendedWidth 
+    readonly property int panelHeight: config.panelHeight
 
-    readonly property var isHovered: mouseArea.containsMouse
+    readonly property bool anchorTop: config.anchorTop
+    readonly property bool reserveSpace: config.reserveSpace
 
-	property var activePillIndex: 0
+    readonly property bool isHovered: mouseArea.containsMouse
 
 	Connections {
 		target: Hyprland
@@ -59,17 +62,19 @@ Scope {
 	}
 
 	PanelWindow {
-		anchors.top: true
+        id: panelWindow
+		anchors.top: root.anchorTop ? true : false
+        anchors.bottom: root.anchorTop ? false : true
 
-		exclusionMode: ExclusionMode.Ignore
-		implicitHeight: 35
+		exclusionMode: root.reserveSpace ? ExclusionMode.Auto : ExclusionMode.Ignore
+		implicitHeight: root.panelHeight
 		implicitWidth: root.extendedWidth
 
 		color: colors.transparent
 
 		PillWidget {
 			id: pillWidget
-			pillWidth: mainWidgetWidth
+			pillWidth: root.mainWidgetWidth
 			anchors.centerIn: parent
 
 			Behavior on implicitWidth {
