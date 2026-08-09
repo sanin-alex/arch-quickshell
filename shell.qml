@@ -7,7 +7,6 @@ import "Widgets"
 
 Scope {
 	id: root
-	Colors { id: colors }
 	Battery { id: battery }
 	Time { id: time }
     Config { id: config }
@@ -109,9 +108,9 @@ Scope {
 
 			WorkspaceWidget {
 				id: workspaceWidget
-				activeColor: colors.brightSnow
-				usedColor: colors.slateGrey
-				unusedColor: colors.gunMetal
+				activeColor: config.surfaceColor
+				usedColor: config.usedColor
+				unusedColor: config.unusedColor
 				opacity: 0
 				Behavior on opacity {
 					NumberAnimation {

@@ -21,4 +21,17 @@ Scope {
     readonly property bool reserveSpace: true // Determines if space should be reserved or if bar should be rendered over windows
 
     readonly property int animationDuration: 200 // Determines the speed of all animations
+
+    readonly property string transparentColor: colors.transparent
+
+    readonly property string surfaceColor: colors.white
+    readonly property string backgroundColor: colors.black
+    readonly property string disabledColor: colors.grey50
+    readonly property string usedColor: colors.grey35
+    readonly property string unusedColor: colors.grey25
+
+    readonly property string batteryStandardColor: colors.white
+    readonly property string batteryChargingColor: colors.green
+    readonly property string batteryWarningColor: colors.yellow
+    readonly property string batteryCriticalColor: colors.red
 }

@@ -5,12 +5,11 @@ import ".."
 
 Rectangle {
     id: root
-    Colors { id: colors }
     Wifi { id: wifi }
     Fonts { id: fonts }
     Config { id: config }
 
-    color: colors.onyx
+    color: config.backgroundColor
     property var standardWidth: 24
     property var extendedWidth: 125
     readonly property int animationDuration: config.animationDuration
@@ -38,7 +37,7 @@ Rectangle {
     Text {
         id: signalStrenght
         text: wifi.signalStrengthSymbol 
-        color: colors.brightSnow
+        color: config.surfaceColor
         font { pixelSize: 15 }	
         anchors {
             right: root.right
@@ -48,7 +47,7 @@ Rectangle {
     Text {
         id: ssid
         text: wifi.currentNetwork
-        color: colors.brightSnow
+        color: config.surfaceColor
         font.family: fonts.name
         anchors.right: root.right
         anchors.rightMargin: 24

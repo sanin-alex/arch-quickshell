@@ -2,9 +2,11 @@ import Quickshell
 import QtQuick
 import Quickshell.Io
 
+import ".."
+
 Scope {
 	id: root
-	Colors { id: colors }
+    Config { id: config }
 
 	// Battery States
 	readonly property int batteryStatus_Healthy: 0
@@ -23,20 +25,20 @@ Scope {
 		running: true
 		stdout: StdioCollector {
 			onStreamFinished: { 
-				batteryPercentage = parseInt(this.text)
-				if(!batteryCharging) {
-					if(batteryPercentage <= 15) {
-						root.currentBatteryStatus = batteryStatus_Critical
+				root.batteryPercentage = parseInt(this.text)
+				if(!root.batteryCharging) {
+					if(root.batteryPercentage <= 15) {
+						root.currentBatteryStatus = root.batteryStatus_Critical
 					}
-					else if (batteryPercentage <= 25) {
-						root.currentBatteryStatus = batteryStatus_Low
+					else if (root.batteryPercentage <= 25) {
+						root.currentBatteryStatus = root.batteryStatus_Low
 					}
 					else {
-						root.currentBatteryStatus = batteryStatus_Healthy
+						root.currentBatteryStatus = root.batteryStatus_Healthy
 					}
 				}
 				else {
-					root.currentBatteryStatus = batteryStatus_Charging
+					root.currentBatteryStatus = root.batteryStatus_Charging
 				}
 			}
 		}
@@ -62,10 +64,10 @@ Scope {
 
 	function getColorByBatteryStatus() {
 		switch(currentBatteryStatus) {
-			case root.batteryStatus_Critical: return colors.red;
-			case root.batteryStatus_Low: return colors.yellow;
-			case root.batteryStatus_Charging: return colors.paleGreen;
-			case root.batteryStatus_Healthy: return colors.brightSnow;
+			case root.batteryStatus_Critical: return config.batteryCriticalColor;
+			case root.batteryStatus_Low: return config.batteryWarningColor;
+			case root.batteryStatus_Charging: return config.batteryChargingColor;
+			case root.batteryStatus_Healthy: return config.surfaceColor;
 		}
 	}
 }

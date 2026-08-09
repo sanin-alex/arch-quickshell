@@ -6,13 +6,12 @@ import ".."
 Rectangle {
     id: root
     Battery { id: battery }
-    Colors { id: colors }
     Fonts { id: fonts }
     Config { id: config }
 
     implicitWidth: standardWidth
     implicitHeight: 12
-    color: colors.transparent
+    color: config.transparentColor
     clip: true
 
     property bool extended: false
@@ -38,7 +37,7 @@ Rectangle {
     Text {
         id: percentageText
         text: battery.batteryPercentage + "%"
-        color: colors.brightSnow
+        color: config.surfaceColor
         anchors.left: border.left
         anchors.leftMargin: 24
         anchors.verticalCenter: border.verticalCenter
@@ -50,8 +49,8 @@ Rectangle {
         implicitHeight: 8
         radius: 15
         border.width: 1
-        border.color: colors.brightSnow
-        color: colors.onyx
+        border.color: config.surfaceColor
+        color: config.backgroundColor
         anchors.verticalCenter: root.verticalCenter 
         anchors.left: root.left
         anchors.leftMargin: 4
@@ -80,7 +79,7 @@ Rectangle {
             width: 2.5
             height: 4
             radius: 1
-            color: colors.brightSnow
+            color: config.surfaceColor
         }
     }
 }
