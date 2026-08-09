@@ -13,9 +13,9 @@ Scope {
 		stdout: StdioCollector {
 			onStreamFinished: {
                 var outputText = this.text
-                var network = parseOutputText(outputText)
-                currentNetwork = network.ssid
-                signalStrengthSymbol = getWifiSymbol(network)
+                var network = root.parseOutputText(outputText)
+                root.currentNetwork = network.ssid
+                root.signalStrengthSymbol = root.getWifiSymbol(network)
 			}
 		}
 	}
