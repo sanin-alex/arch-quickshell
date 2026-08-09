@@ -38,4 +38,7 @@ Scope {
     readonly property string batteryChargingColor: colors.green
     readonly property string batteryWarningColor: colors.yellow
     readonly property string batteryCriticalColor: colors.red
+
+    // Font
+    readonly property string fontSource: "../fonts/retro-floral.regular.otf"
 }

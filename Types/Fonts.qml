@@ -1,6 +1,8 @@
 import QtQuick
+import ".."
 
 FontLoader {
-    id: retrofloral
-    source: "../fonts/retro-floral.regular.otf"
+    property Config config: Config { id: config }
+    id: font
+    source: config.fontSource
 }
