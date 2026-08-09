@@ -1,12 +1,11 @@
+pragma Singleton
 import QtQuick
-import Quickshell
-
 import "Types"
 
-Scope {
+QtObject {
     id: root
 
-    Colors { id: colors }
+    property Colors colors: Colors { id: colors }
 
     // Bar
     readonly property int mainWidgetWidth: 125 // Determines width of bar when displaying MainWidget

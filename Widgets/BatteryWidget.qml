@@ -7,18 +7,17 @@ Rectangle {
     id: root
     Battery { id: battery }
     Fonts { id: fonts }
-    Config { id: config }
 
     implicitWidth: standardWidth
     implicitHeight: 12
-    color: config.transparentColor
+    color: Config.transparentColor
     clip: true
 
     property bool extended: false
     property int standardWidth: 24
     property int extendedWidth: 125
 
-    property int animationDuration: config.animationDuration
+    property int animationDuration: Config.animationDuration
 
     Behavior on implicitWidth {
         NumberAnimation {
@@ -37,7 +36,7 @@ Rectangle {
     Text {
         id: percentageText
         text: battery.batteryPercentage + "%"
-        color: config.surfaceColor
+        color: Config.surfaceColor
         anchors.left: border.left
         anchors.leftMargin: 24
         anchors.verticalCenter: border.verticalCenter
@@ -49,8 +48,8 @@ Rectangle {
         implicitHeight: 8
         radius: 15
         border.width: 1
-        border.color: config.surfaceColor
-        color: config.backgroundColor
+        border.color: Config.surfaceColor
+        color: Config.backgroundColor
         anchors.verticalCenter: root.verticalCenter 
         anchors.left: root.left
         anchors.leftMargin: 4
@@ -79,7 +78,7 @@ Rectangle {
             width: 2.5
             height: 4
             radius: 1
-            color: config.surfaceColor
+            color: Config.surfaceColor
         }
     }
 }

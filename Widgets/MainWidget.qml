@@ -6,7 +6,6 @@ import ".."
 
 RowLayout {
 	Time { id: time }
-    Config { id: config }
     id: root
 
     property bool isHovered
@@ -21,7 +20,7 @@ RowLayout {
 
 	TimeWidget {
 		systemTime: time.systemTime
-		textColor: config.surfaceColor
+		textColor: Config.surfaceColor
 	}
 
 	BatteryWidget {

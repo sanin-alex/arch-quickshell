@@ -4,25 +4,25 @@ import Quickshell.Hyprland
 
 import "Types"
 import "Widgets"
+import "."
 
 Scope {
 	id: root
 	Battery { id: battery }
 	Time { id: time }
-    Config { id: config }
 
-    readonly property int mainWidgetWidth: config.mainWidgetWidth
-    readonly property int workspaceWidgetWidth: config.workspaceWidgetWidth
+    readonly property int mainWidgetWidth: Config.mainWidgetWidth
+    readonly property int workspaceWidgetWidth: Config.workspaceWidgetWidth
 
-    readonly property bool extendOnHover: config.extendOnHover
-    readonly property int extendedWidth: config.extendedWidth 
+    readonly property bool extendOnHover: Config.extendOnHover
+    readonly property int extendedWidth: Config.extendedWidth 
 
-    readonly property int panelHeight: config.panelHeight
+    readonly property int panelHeight: Config.panelHeight
 
-    readonly property bool anchorTop: config.anchorTop
-    readonly property bool reserveSpace: config.reserveSpace
+    readonly property bool anchorTop: Config.anchorTop
+    readonly property bool reserveSpace: Config.reserveSpace
 
-    readonly property int animationDuration: config.animationDuration
+    readonly property int animationDuration: Config.animationDuration
 
     readonly property bool isHovered: extendOnHover ? mouseArea.containsMouse : false
 
@@ -74,7 +74,7 @@ Scope {
 		implicitHeight: root.panelHeight
 		implicitWidth: root.extendedWidth
 
-		color: config.transparentColor
+		color: Config.transparentColor
 
 		PillWidget {
 			id: pillWidget
@@ -107,9 +107,9 @@ Scope {
 
 			WorkspaceWidget {
 				id: workspaceWidget
-				activeColor: config.surfaceColor
-				usedColor: config.usedColor
-				unusedColor: config.unusedColor
+				activeColor: Config.surfaceColor
+				usedColor: Config.usedColor
+				unusedColor: Config.unusedColor
 				opacity: 0
 				Behavior on opacity {
 					NumberAnimation {

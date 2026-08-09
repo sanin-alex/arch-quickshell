@@ -6,7 +6,6 @@ import ".."
 
 Scope {
 	id: root
-    Config { id: config }
 
 	// Battery States
 	readonly property int batteryStatus_Healthy: 0
@@ -64,10 +63,10 @@ Scope {
 
 	function getColorByBatteryStatus() {
 		switch(currentBatteryStatus) {
-			case root.batteryStatus_Critical: return config.batteryCriticalColor;
-			case root.batteryStatus_Low: return config.batteryWarningColor;
-			case root.batteryStatus_Charging: return config.batteryChargingColor;
-			case root.batteryStatus_Healthy: return config.surfaceColor;
+			case root.batteryStatus_Critical: return Config.batteryCriticalColor;
+			case root.batteryStatus_Low: return Config.batteryWarningColor;
+			case root.batteryStatus_Charging: return Config.batteryChargingColor;
+			case root.batteryStatus_Healthy: return Config.surfaceColor;
 		}
 	}
 }

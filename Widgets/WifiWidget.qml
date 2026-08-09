@@ -7,12 +7,11 @@ Rectangle {
     id: root
     Wifi { id: wifi }
     Fonts { id: fonts }
-    Config { id: config }
 
-    color: config.backgroundColor
+    color: Config.backgroundColor
     property var standardWidth: 24
     property var extendedWidth: 125
-    readonly property int animationDuration: config.animationDuration
+    readonly property int animationDuration: Config.animationDuration
     implicitWidth: standardWidth 
     implicitHeight: 15
     clip: true
@@ -37,7 +36,7 @@ Rectangle {
     Text {
         id: signalStrenght
         text: wifi.signalStrengthSymbol 
-        color: config.surfaceColor
+        color: Config.surfaceColor
         font { pixelSize: 15 }	
         anchors {
             right: root.right
@@ -47,7 +46,7 @@ Rectangle {
     Text {
         id: ssid
         text: wifi.currentNetwork
-        color: config.surfaceColor
+        color: Config.surfaceColor
         font.family: fonts.name
         anchors.right: root.right
         anchors.rightMargin: 24
