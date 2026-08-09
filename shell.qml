@@ -14,13 +14,19 @@ Scope {
 
     readonly property int mainWidgetWidth: config.mainWidgetWidth
     readonly property int workspaceWidgetWidth: config.workspaceWidgetWidth
+
+    readonly property bool extendOnHover: config.extendOnHover
     readonly property int extendedWidth: config.extendedWidth 
+
     readonly property int panelHeight: config.panelHeight
+    readonly property string panelColor: config.panelColor
 
     readonly property bool anchorTop: config.anchorTop
     readonly property bool reserveSpace: config.reserveSpace
 
-    readonly property bool isHovered: mouseArea.containsMouse
+    readonly property int animationDuration: config.animationDuration
+
+    readonly property bool isHovered: extendOnHover ? mouseArea.containsMouse : false
 
 	Connections {
 		target: Hyprland
@@ -70,7 +76,7 @@ Scope {
 		implicitHeight: root.panelHeight
 		implicitWidth: root.extendedWidth
 
-		color: colors.transparent
+		color: root.panelColor
 
 		PillWidget {
 			id: pillWidget
@@ -79,7 +85,7 @@ Scope {
 
 			Behavior on implicitWidth {
 				NumberAnimation {
-					duration: 200
+					duration: root.animationDuration 
 					easing.type: Easing.InOutQuad
 				}
 			}
@@ -95,7 +101,7 @@ Scope {
                 isHovered: root.isHovered
 				Behavior on opacity {
 					NumberAnimation {
-						duration: 200
+						duration: root.animationDuration
 						easing.type: Easing.InOutQuad
 					}
 				}
@@ -109,7 +115,7 @@ Scope {
 				opacity: 0
 				Behavior on opacity {
 					NumberAnimation {
-						duration: 200
+						duration: root.animationDuration
 						easing.type: Easing.InOutQuad
 					}
 				}

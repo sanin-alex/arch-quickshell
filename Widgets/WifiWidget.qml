@@ -1,16 +1,19 @@
 import QtQuick
 
 import "../Types"
+import ".."
 
 Rectangle {
     id: root
     Colors { id: colors }
     Wifi { id: wifi }
     Fonts { id: fonts }
+    Config { id: config }
 
     color: colors.onyx
     property var standardWidth: 24
     property var extendedWidth: 125
+    readonly property int animationDuration: config.animationDuration
     implicitWidth: standardWidth 
     implicitHeight: 15
     clip: true
@@ -27,7 +30,7 @@ Rectangle {
 
     Behavior on implicitWidth {
         NumberAnimation {
-            duration: 200
+            duration: root.animationDuration 
             easing.type: Easing.InOutQuad
         }
     }

@@ -1,12 +1,14 @@
 import QtQuick
 
 import "../Types"
+import ".."
 
 Rectangle {
     id: root
     Battery { id: battery }
     Colors { id: colors }
     Fonts { id: fonts }
+    Config { id: config }
 
     implicitWidth: standardWidth
     implicitHeight: 12
@@ -17,9 +19,11 @@ Rectangle {
     property int standardWidth: 24
     property int extendedWidth: 125
 
+    property int animationDuration: config.animationDuration
+
     Behavior on implicitWidth {
         NumberAnimation {
-            duration: 200
+            duration: root.animationDuration
             easing.type: Easing.InOutQuad
         }
     }
