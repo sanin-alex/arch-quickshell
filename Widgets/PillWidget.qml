@@ -12,7 +12,7 @@ Rectangle {
 	implicitHeight: 25
 	border {
 		color: config.surfaceColor
-		width: 1
+		width: config.borderWidth
 	}
 }
 

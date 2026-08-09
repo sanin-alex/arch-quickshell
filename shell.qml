@@ -18,7 +18,6 @@ Scope {
     readonly property int extendedWidth: config.extendedWidth 
 
     readonly property int panelHeight: config.panelHeight
-    readonly property string panelColor: config.panelColor
 
     readonly property bool anchorTop: config.anchorTop
     readonly property bool reserveSpace: config.reserveSpace
@@ -75,7 +74,7 @@ Scope {
 		implicitHeight: root.panelHeight
 		implicitWidth: root.extendedWidth
 
-		color: root.panelColor
+		color: config.transparentColor
 
 		PillWidget {
 			id: pillWidget
