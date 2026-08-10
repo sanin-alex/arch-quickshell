@@ -4,20 +4,27 @@ import Quickshell.Hyprland
 
 import "Types"
 import "Widgets"
+import "."
 
 Scope {
 	id: root
-	Colors { id: colors }
 	Battery { id: battery }
 	Time { id: time }
 
-    readonly property int mainWidgetWidth: 125
-    readonly property int workspaceWidgetWidth: 185
-    readonly property int extendedWidth: 325
+    readonly property int mainWidgetWidth: Config.mainWidgetWidth
+    readonly property int workspaceWidgetWidth: Config.workspaceWidgetWidth
 
-    readonly property var isHovered: mouseArea.containsMouse
+    readonly property bool extendOnHover: Config.extendOnHover
+    readonly property int extendedWidth: Config.extendedWidth 
 
-	property var activePillIndex: 0
+    readonly property int panelHeight: Config.panelHeight
+
+    readonly property bool anchorTop: Config.anchorTop
+    readonly property bool reserveSpace: Config.reserveSpace
+
+    readonly property int animationDuration: Config.animationDuration
+
+    readonly property bool isHovered: extendOnHover ? mouseArea.containsMouse : false
 
 	Connections {
 		target: Hyprland
@@ -59,22 +66,24 @@ Scope {
 	}
 
 	PanelWindow {
-		anchors.top: true
+        id: panelWindow
+		anchors.top: root.anchorTop ? true : false
+        anchors.bottom: root.anchorTop ? false : true
 
-		exclusionMode: ExclusionMode.Ignore
-		implicitHeight: 35
+		exclusionMode: root.reserveSpace ? ExclusionMode.Auto : ExclusionMode.Ignore
+		implicitHeight: root.panelHeight
 		implicitWidth: root.extendedWidth
 
-		color: colors.transparent
+		color: Config.transparentColor
 
 		PillWidget {
 			id: pillWidget
-			pillWidth: mainWidgetWidth
+			pillWidth: root.mainWidgetWidth
 			anchors.centerIn: parent
 
 			Behavior on implicitWidth {
 				NumberAnimation {
-					duration: 200
+					duration: root.animationDuration 
 					easing.type: Easing.InOutQuad
 				}
 			}
@@ -90,7 +99,7 @@ Scope {
                 isHovered: root.isHovered
 				Behavior on opacity {
 					NumberAnimation {
-						duration: 200
+						duration: root.animationDuration
 						easing.type: Easing.InOutQuad
 					}
 				}
@@ -98,13 +107,13 @@ Scope {
 
 			WorkspaceWidget {
 				id: workspaceWidget
-				activeColor: colors.brightSnow
-				usedColor: colors.slateGrey
-				unusedColor: colors.gunMetal
+				activeColor: Config.surfaceColor
+				usedColor: Config.usedColor
+				unusedColor: Config.unusedColor
 				opacity: 0
 				Behavior on opacity {
 					NumberAnimation {
-						duration: 200
+						duration: root.animationDuration
 						easing.type: Easing.InOutQuad
 					}
 				}

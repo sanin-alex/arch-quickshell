@@ -4,8 +4,8 @@ import Quickshell.Io
 
 Scope {
     id: root
-    property var currentNetwork: "no.wifi.match"
-    property var signalStrengthSymbol: "no.signal"
+    property string currentNetwork: "no.wifi.match"
+    property string signalStrengthSymbol: "no.signal"
 	Process {
 		id: getCurrentNetwork
 		command: [`iwctl`, `station`, `wlan0`, `show`]
@@ -13,9 +13,9 @@ Scope {
 		stdout: StdioCollector {
 			onStreamFinished: {
                 var outputText = this.text
-                var network = parseOutputText(outputText)
-                currentNetwork = network.ssid
-                signalStrengthSymbol = getWifiSymbol(network)
+                var network = root.parseOutputText(outputText)
+                root.currentNetwork = network.ssid
+                root.signalStrengthSymbol = root.getWifiSymbol(network)
 			}
 		}
 	}

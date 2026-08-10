@@ -1,19 +1,17 @@
 import QtQuick
-import Quickshell
 
-import "../Types"
+import ".."
 
 Rectangle {
-	required property var pillWidth
-	Colors { id: colors }
+	required property int pillWidth
 
-	color: colors.onyx
+	color: Config.backgroundColor
 	radius: 15
 	implicitWidth: pillWidth
 	implicitHeight: 25
 	border {
-		color: colors.brightSnow
-		width: 1
+		color: Config.surfaceColor
+		width: Config.borderWidth
 	}
 }
 

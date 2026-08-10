@@ -2,10 +2,10 @@ import QtQuick
 import QtQuick.Layouts
 
 import "../Types"
+import ".."
 
 RowLayout {
 	Time { id: time }
-	Colors { id: colors }
     id: root
 
     property bool isHovered
@@ -20,7 +20,7 @@ RowLayout {
 
 	TimeWidget {
 		systemTime: time.systemTime
-		textColor: colors.brightSnow
+		textColor: Config.surfaceColor
 	}
 
 	BatteryWidget {

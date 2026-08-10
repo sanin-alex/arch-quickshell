@@ -1,25 +1,27 @@
 import QtQuick
 
 import "../Types"
+import ".."
 
 Rectangle {
     id: root
     Battery { id: battery }
-    Colors { id: colors }
     Fonts { id: fonts }
 
     implicitWidth: standardWidth
     implicitHeight: 12
-    color: colors.transparent
+    color: Config.transparentColor
     clip: true
 
     property bool extended: false
     property int standardWidth: 24
     property int extendedWidth: 125
 
+    property int animationDuration: Config.animationDuration
+
     Behavior on implicitWidth {
         NumberAnimation {
-            duration: 200
+            duration: root.animationDuration
             easing.type: Easing.InOutQuad
         }
     }
@@ -34,7 +36,7 @@ Rectangle {
     Text {
         id: percentageText
         text: battery.batteryPercentage + "%"
-        color: colors.brightSnow
+        color: Config.surfaceColor
         anchors.left: border.left
         anchors.leftMargin: 24
         anchors.verticalCenter: border.verticalCenter
@@ -46,16 +48,16 @@ Rectangle {
         implicitHeight: 8
         radius: 15
         border.width: 1
-        border.color: colors.brightSnow
-        color: colors.onyx
+        border.color: Config.surfaceColor
+        color: Config.backgroundColor
         anchors.verticalCenter: root.verticalCenter 
         anchors.left: root.left
         anchors.leftMargin: 4
 
         Rectangle {
             id: batteryIndicator
-            property var fullWidth: border.implicitWidth - 5
-            property var currentWidth: fullWidth * (battery.batteryPercentage / 100)
+            property real fullWidth: border.implicitWidth - 5
+            property real currentWidth: fullWidth * (battery.batteryPercentage / 100)
             implicitWidth: currentWidth
             radius: 15
             anchors {
@@ -76,7 +78,7 @@ Rectangle {
             width: 2.5
             height: 4
             radius: 1
-            color: colors.brightSnow
+            color: Config.surfaceColor
         }
     }
 }

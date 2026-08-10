@@ -1,16 +1,17 @@
 import QtQuick
 
 import "../Types"
+import ".."
 
 Rectangle {
     id: root
-    Colors { id: colors }
     Wifi { id: wifi }
     Fonts { id: fonts }
 
-    color: colors.onyx
-    property var standardWidth: 24
-    property var extendedWidth: 125
+    color: Config.backgroundColor
+    property int standardWidth: 24
+    property int extendedWidth: 125
+    readonly property int animationDuration: Config.animationDuration
     implicitWidth: standardWidth 
     implicitHeight: 15
     clip: true
@@ -27,7 +28,7 @@ Rectangle {
 
     Behavior on implicitWidth {
         NumberAnimation {
-            duration: 200
+            duration: root.animationDuration 
             easing.type: Easing.InOutQuad
         }
     }
@@ -35,7 +36,7 @@ Rectangle {
     Text {
         id: signalStrenght
         text: wifi.signalStrengthSymbol 
-        color: colors.brightSnow
+        color: Config.surfaceColor
         font { pixelSize: 15 }	
         anchors {
             right: root.right
@@ -45,7 +46,7 @@ Rectangle {
     Text {
         id: ssid
         text: wifi.currentNetwork
-        color: colors.brightSnow
+        color: Config.surfaceColor
         font.family: fonts.name
         anchors.right: root.right
         anchors.rightMargin: 24

@@ -5,8 +5,8 @@ import Quickshell.Io
 Scope {
 	id: root
 	// Variables
-	property var systemTime: ""
-	property var systemDate: ""
+	property string systemTime: ""
+	property string systemDate: ""
 
 	// Time Process
 	Process {
