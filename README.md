@@ -62,6 +62,9 @@ hl.on("hyprland.start", function ()
 end)
 ```
 
+## Customization
+You can easily customize colors, looks and certain behaviors of the bar by modifying [Config.qml](./Config.qml).
+
 # Planned Features
 Since this project is still in active development, features will be added in the future. This list also serves to show what is not yet supported.
 
@@ -70,4 +73,3 @@ Since this project is still in active development, features will be added in the
 - **Bluetooth Integration**: Show currently connected devices and an interface to manage connections.
 - **WiFi Integration**: Show which network the device is currently connected to and an interface to manage connections. (Currently only shows signal strength to the current network)
 - **Quick Settings**: A drop-down menu to adjust volume and screen brightness.
-- **Custom Configuration**: Easily change colors and customize look and feel.
