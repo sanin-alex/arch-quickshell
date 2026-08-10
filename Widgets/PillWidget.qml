@@ -3,7 +3,7 @@ import QtQuick
 import ".."
 
 Rectangle {
-	required property var pillWidth
+	required property int pillWidth
 
 	color: Config.backgroundColor
 	radius: 15

@@ -56,8 +56,8 @@ Rectangle {
 
         Rectangle {
             id: batteryIndicator
-            property var fullWidth: border.implicitWidth - 5
-            property var currentWidth: fullWidth * (battery.batteryPercentage / 100)
+            property real fullWidth: border.implicitWidth - 5
+            property real currentWidth: fullWidth * (battery.batteryPercentage / 100)
             implicitWidth: currentWidth
             radius: 15
             anchors {

@@ -9,8 +9,8 @@ Rectangle {
     Fonts { id: fonts }
 
     color: Config.backgroundColor
-    property var standardWidth: 24
-    property var extendedWidth: 125
+    property int standardWidth: 24
+    property int extendedWidth: 125
     readonly property int animationDuration: Config.animationDuration
     implicitWidth: standardWidth 
     implicitHeight: 15
