@@ -1,5 +1,5 @@
 # Simple Quickshell Bar
-*This project is still in active development.*<br /><br />
+*This project has been archived as is no longer in active development.*<br /><br />
 A distraction free, lightweight Taskbar for Hyprland. Only shows what you really need.<br /><br />
 ![Showcase](./showcase.gif)
 <br />
